@@ -1,0 +1,30 @@
+import { ProductModel } from "./productModel";
+
+export const getProducts = (): ProductModel[] => {
+  let products: ProductModel[] = [];
+  products.push({ productId: "gorby", name: "Gorby Pirog" });
+
+  products.push({ productId: "bilar", name: "Ahlgrens Bilar" });
+  products.push({ productId: "billy", name: "Billy Pan Pizza" });
+  products.push({ productId: "cola", name: "Coca Cola 2L" });
+  products.push({ productId: "fanta", name: "Fanta 2L" });
+  products.push({ productId: "lovtunn", name: "Lövtunn bit XL" });
+
+  products.push({ productId: "brunabonor", name: "Bruna bönor rulle" });
+
+  products.push({ productId: "jordnotter", name: "Salta jordnötter" });
+
+  products.push({ productId: "kalles", name: "Kalles kaviar" });
+  products.push({ productId: "mjolk", name: "Mjölk Röd!" });
+
+  products.push({ productId: "oboy", name: "O'boy" });
+  products.push({ productId: "ostbagar", name: "Ostbågar" });
+  products.push({ productId: "polarbrod", name: "Polarbröd" });
+
+  products.push({ productId: "pripps", name: "Pripps Blå 2,8%" });
+  products.push({ productId: "snus", name: "Göteborgs Rapé (Extra Strong)" });
+  products.push({ productId: "sourcream", name: "Sourcream & Onion" });
+  products.push({ productId: "snickers", name: "Snickers" });
+
+  return products;
+};

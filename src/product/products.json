@@ -1,0 +1,54 @@
+{
+  "products": {
+    "gorby": {
+      "name": "Gorby Pirog",
+      "image": "img/gorby.jpg"
+    },
+    "bilar": {
+      "name": "Ahlgrens Bilar",
+      "image": "img/bilar.jpg"
+    },
+    "billy": {
+      "name": "Billy Pan Pizza",
+      "image": "img/billy.jpg"
+    },
+    "cola": { "name": "Coca Cola 2L", "image": "img/cola.jpg" },
+    "fanta": { "name": "Fanta 2L", "image": "img/fanta.jpg" },
+    "lovtunn": {
+      "name": "Lövtunn bit XL",
+      "image": "img/lovtunn.jpg"
+    },
+    "brunabonor": {
+      "name": "Bruna bönor rulle",
+      "image": "img/brunabonor.jpg"
+    },
+    "jordnotter": {
+      "name": "Salta jordnötter",
+      "image": "img/jordnotter.jpg"
+    },
+    "kalles": {
+      "name": "Kalles kaviar",
+      "image": "img/kalles.jpg"
+    },
+    "mjolk": { "name": "Mjölk Röd!", "image": "img/mjolk.jpg" },
+    "oboy": { "name": "O'boy", "image": "img/oboy.jpg" },
+    "ostbagar": { "name": "Ostbågar", "image": "img/ostbagar.jpg" },
+    "polarbrod": {
+      "name": "Polarbröd",
+      "image": "img/polarbrod.jpg"
+    },
+    "pripps": {
+      "name": "Pripps Blå 2,8%",
+      "image": "img/pripps.jpg"
+    },
+    "snus": {
+      "name": "Göteborgs Rapé (Extra Strong)",
+      "image": "img/snus.jpg"
+    },
+    "sourcream": {
+      "name": "Sourcream & Onion",
+      "image": "img/sourcream.jpg"
+    },
+    "snickers": { "name": "Snickers", "image": "img/snickers.jpg" }
+  }
+}

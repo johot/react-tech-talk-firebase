@@ -1,0 +1,59 @@
+
+  // {
+  //       "productId": "bilar",
+  //       "name": "Ahlgrens Bilar",
+  //       "image": "img/unknown.jpg"
+  //     },
+  //     {
+  //       "productId": "billy",
+  //       "name": "Billy Pan Pizza",
+  //       "image": "img/unknown.jpg"
+  //     },
+  //     { "productId": "cola", "name": "Coca Cola 2L", "image": "img/unknown.jpg" },
+  //     { "productId": "fanta", "name": "Fanta 2L", "image": "img/unknown.jpg" },
+  //     {
+  //       "productId": "lovtunn",
+  //       "name": "Lövtunn bit XL",
+  //       "image": "img/unknown.jpg"
+  //     },
+  //     {
+  //       "productId": "brunabonor",
+  //       "name": "Bruna bönor rulle",
+  //       "image": "img/unknown.jpg"
+  //     },
+  //     {
+  //       "productId": "jordnotter",
+  //       "name": "Salta jordnötter",
+  //       "image": "img/unknown.jpg"
+  //     },
+  //     {
+  //       "productId": "kalles",
+  //       "name": "Kalles kaviar",
+  //       "image": "img/unknown.jpg"
+  //     },
+  //     { "productId": "mjolk", "name": "Mjölk Röd!", "image": "img/unknown.jpg" },
+  //     { "productId": "oboy", "name": "O'boy", "image": "img/unknown.jpg" },
+  //     { "productId": "ostbagar", "name": "Ostbågar", "image": "img/unknown.jpg" },
+  //     {
+  //       "productId": "polarbrod",
+  //       "name": "Polarbröd",
+  //       "image": "img/unknown.jpg"
+  //     },
+  //     {
+  //       "productId": "pripps",
+  //       "name": "Pripps Blå 2,8%",
+  //       "image": "img/unknown.jpg"
+  //     },
+  //     {
+  //       "productId": "snus",
+  //       "name": "Göteborgs Rapé (Extra Strong)",
+  //       "image": "img/unknown.jpg"
+  //     },
+  //     {
+  //       "productId": "sourcream",
+  //       "name": "Sourcream & Onion",
+  //       "image": "img/unknown.jpg"
+  //     },
+  //     { "productId": "snickers", "name": "Snickers", "image": "img/unknown.jpg" }
+  //}
+//}
