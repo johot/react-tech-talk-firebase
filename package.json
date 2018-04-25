@@ -2,6 +2,7 @@
   "name": "typescript-react-starter",
   "version": "0.1.0",
   "private": true,
+  "homepage": ".",
   "dependencies": {
     "delay": "^2.0.0",
     "firebase": "^4.11.0",
@@ -24,7 +25,8 @@
     "start": "react-scripts-ts start",
     "build": "react-scripts-ts build",
     "test": "react-scripts-ts test --env=jsdom",
-    "eject": "react-scripts-ts eject"
+    "eject": "react-scripts-ts eject",
+    "build-docs": "npm run build && mv build docs"
   },
   "devDependencies": {
     "@types/jest": "^22.1.2",
