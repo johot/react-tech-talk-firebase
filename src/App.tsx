@@ -2,21 +2,7 @@ import * as React from "react";
 import "./App.css";
 import { observable, action } from "mobx";
 import { observer, inject } from "mobx-react";
-import {
-  Button,
-  Form,
-  Container,
-  List,
-  Divider,
-  Header,
-  Grid,
-  Card,
-  Segment,
-  Message,
-  Dimmer,
-  Loader,
-  Menu
-} from "semantic-ui-react";
+import { Button, Form, Container, List, Divider, Header, Grid, Card, Segment, Message, Dimmer, Loader, Menu } from "semantic-ui-react";
 import { Product } from "./product/Product";
 import { ProductModel } from "./product/productModel";
 import { ProductList } from "./productList/ProductList";
@@ -44,10 +30,10 @@ class App extends React.Component<MobXAppProps> {
 
     return (
       <Container>
-        <Menu>
+        {/* <Menu>
           <Menu.Item name="home">Hem</Menu.Item>
           <Menu.Item name="admin">Admin</Menu.Item>
-        </Menu>
+        </Menu> */}
         {store.loadingShoppingCart &&
           store.loadingShoppingCart && (
             <Dimmer active>
@@ -55,20 +41,9 @@ class App extends React.Component<MobXAppProps> {
             </Dimmer>
           )}
         <Jumbotron />
-        <ProductList
-          products={this.props.store!.products}
-          onProductClick={this._addProduct}
-        />
-        <ShoppingCart
-          onProductRemoved={this._removeProduct}
-          products={this.props.store!.shoppingCartProducts}
-        />
-        <Button
-          disabled={this.props.store!.shoppingCartProducts.length === 0}
-          style={{ marginBottom: 20 }}
-          fluid
-          size="massive"
-        >
+        <ProductList products={this.props.store!.products} onProductClick={this._addProduct} />
+        <ShoppingCart onProductRemoved={this._removeProduct} products={this.props.store!.shoppingCartProducts} />
+        <Button disabled={this.props.store!.shoppingCartProducts.length === 0} style={{ marginBottom: 20 }} fluid size="massive">
           Beställ
         </Button>
       </Container>

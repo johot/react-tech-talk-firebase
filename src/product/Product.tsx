@@ -26,11 +26,7 @@ export const Product = (props: ProductProps) => (
       }}
       onClick={() => props.onClick(props.product)}
     >
-      <Grid
-        style={{ height: "100%" }}
-        horizontalContentAlignment="center"
-        verticalContentAlignment="center"
-      >
+      <Grid style={{ height: "100%" }} horizontalContentAlignment="center" verticalContentAlignment="center">
         <img
           style={{
             padding: 5,
@@ -46,7 +42,7 @@ export const Product = (props: ProductProps) => (
             return (
               <Card.Header
                 style={{
-                  wordWrap: "break-word",
+                  //wordWrap: "break-word",
                   fontSize: matches ? "15px" : null
                 }}
               >
