@@ -2,7 +2,7 @@
   "name": "typescript-react-starter",
   "version": "0.1.0",
   "private": true,
-  "homepage": ".",
+  "homepage": "https://curbitssoftware.com/react-tech-talk-firebase/",
   "dependencies": {
     "delay": "^2.0.0",
     "firebase": "^4.11.0",
