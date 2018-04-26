@@ -16,7 +16,7 @@ export class ProductList extends React.PureComponent<ProductListProps> {
     console.log("Rendering ProductList");
 
     let productGroups: ((ProductModel | null)[])[] = [];
-    let size = 4;
+    let size = 3;
 
     let productsCopy = this.props.products.slice();
 
@@ -27,7 +27,7 @@ export class ProductList extends React.PureComponent<ProductListProps> {
     const lastIndex = productGroups.length - 1;
 
     // Make sure last product group is filled
-    while (productGroups.length > 0 && productGroups[lastIndex].length < 4) {
+    while (productGroups.length > 0 && productGroups[lastIndex].length < size) {
       productGroups[lastIndex].push(null);
     }
 
@@ -35,17 +35,7 @@ export class ProductList extends React.PureComponent<ProductListProps> {
       return (
         <Row key={groupIndex} height="200px">
           {group.map((p, i) => {
-            return (
-              <Column key={i}>
-                {p && (
-                  <Product
-                    key={p.productId}
-                    onClick={p => this.props.onProductClick(p)}
-                    product={p}
-                  />
-                )}
-              </Column>
-            );
+            return <Column key={i}>{p && <Product key={p.productId} onClick={p => this.props.onProductClick(p)} product={p} />}</Column>;
           })}
         </Row>
       );

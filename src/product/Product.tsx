@@ -4,6 +4,7 @@ import { Grid } from "react-awesome-grid";
 import { ProductModel } from "./productModel";
 import { css } from "glamor";
 import MediaQuery from "react-responsive";
+import { Responsive } from "../common/Responsive";
 
 interface ProductProps {
   product: ProductModel;
@@ -26,11 +27,7 @@ export const Product = (props: ProductProps) => (
       }}
       onClick={() => props.onClick(props.product)}
     >
-      <Grid
-        style={{ height: "100%" }}
-        horizontalContentAlignment="center"
-        verticalContentAlignment="center"
-      >
+      <Grid style={{ height: "100%" }} horizontalContentAlignment="center" verticalContentAlignment="center">
         <img
           style={{
             padding: 5,
@@ -41,20 +38,9 @@ export const Product = (props: ProductProps) => (
         />
       </Grid>
       <Card.Content>
-        <MediaQuery query="(max-width: 700px)">
-          {matches => {
-            return (
-              <Card.Header
-                style={{
-                  wordWrap: "break-word",
-                  fontSize: matches ? "15px" : null
-                }}
-              >
-                {props.product.name}
-              </Card.Header>
-            );
-          }}
-        </MediaQuery>
+        <Responsive desktopStyle={null} mobileStyle={{ fontSize: "15px" }}>
+          {style => <Card.Header style={style}>{props.product.name}</Card.Header>}
+        </Responsive>
       </Card.Content>
     </Card>
   </div>
