@@ -47,7 +47,7 @@ interface ShoppingCartItemProps {
 
 export const ShoppingCartItem = (props: ShoppingCartItemProps) => (
   <Segment clearing size="large" key={props.product.productId}>
-    <Grid style={{ height: "60px" }}>
+    <Grid style={{ height: "40px" }}>
       <Column verticalContentAlignment="center" width="50px">
         <Segment style={{ height: "40px", padding: 5 }}>
           <Grid

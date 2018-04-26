@@ -44,10 +44,6 @@ class App extends React.Component<MobXAppProps> {
 
     return (
       <Container>
-        <Menu>
-          <Menu.Item name="home">Hem</Menu.Item>
-          <Menu.Item name="admin">Admin</Menu.Item>
-        </Menu>
         {store.loadingShoppingCart &&
           store.loadingShoppingCart && (
             <Dimmer active>
@@ -55,13 +51,14 @@ class App extends React.Component<MobXAppProps> {
             </Dimmer>
           )}
         <Jumbotron />
-        <ProductList
-          products={this.props.store!.products}
-          onProductClick={this._addProduct}
-        />
         <ShoppingCart
           onProductRemoved={this._removeProduct}
           products={this.props.store!.shoppingCartProducts}
+        />
+        <Header textAlign="center">Vårt välsmakande utbud</Header>
+        <ProductList
+          products={this.props.store!.products}
+          onProductClick={this._addProduct}
         />
         <Button
           disabled={this.props.store!.shoppingCartProducts.length === 0}
@@ -71,6 +68,10 @@ class App extends React.Component<MobXAppProps> {
         >
           Beställ
         </Button>
+        <Menu>
+          <Menu.Item name="home">Hem</Menu.Item>
+          <Menu.Item name="admin">Admin</Menu.Item>
+        </Menu>
       </Container>
     );
   }
