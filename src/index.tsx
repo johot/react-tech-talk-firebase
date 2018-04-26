@@ -14,7 +14,7 @@ configure({ enforceActions: true });
 // *** MobX ***
 let store = new Store();
 //store.products = getProducts();
-store.init();
+//store.init();
 
 //console.log(JSON.stringify(getProducts()));
 

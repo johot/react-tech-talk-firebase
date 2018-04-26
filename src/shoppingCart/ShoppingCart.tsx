@@ -1,12 +1,12 @@
 import * as React from "react";
 import { Segment, Header, Button } from "semantic-ui-react";
-import { ProductModel } from "../product/productModel";
 import { observer } from "mobx-react";
 import Grid, { Column } from "react-awesome-grid";
+import { ShoppingCartItem } from "./shoppingCartItemModel";
 
 interface ShoppingCartProps {
-  products: ProductModel[];
-  onProductRemoved: (product: ProductModel) => void;
+  shoppingCartItems: ShoppingCartItem[];
+  onProductRemoved: (product: ShoppingCartItem) => void;
 }
 @observer
 export class ShoppingCart extends React.Component<ShoppingCartProps> {
@@ -15,17 +15,10 @@ export class ShoppingCart extends React.Component<ShoppingCartProps> {
 
     return (
       <>
-        <Header textAlign="center">I din kasse</Header>
-        {this.props.products.length > 0 ? (
+        {this.props.shoppingCartItems.length > 0 ? (
           <Segment.Group style={{ marginBottom: 40 }}>
-            {this.props.products.map((p, i) => {
-              return (
-                <ShoppingCartItem
-                  key={p.productId}
-                  product={p}
-                  onProductRemoved={this.props.onProductRemoved}
-                />
-              );
+            {this.props.shoppingCartItems.map((s, i) => {
+              return <ShoppingCartItemDisplay key={s.shoppingCartItemId} shoppingCartItem={s} onProductRemoved={this.props.onProductRemoved} />;
             })}
           </Segment.Group>
         ) : (
@@ -41,42 +34,41 @@ export class ShoppingCart extends React.Component<ShoppingCartProps> {
 }
 
 interface ShoppingCartItemProps {
-  product: ProductModel;
-  onProductRemoved: (product: ProductModel) => void;
+  shoppingCartItem: ShoppingCartItem;
+  onProductRemoved: (shoppingCartItem: ShoppingCartItem) => void;
 }
 
-export const ShoppingCartItem = (props: ShoppingCartItemProps) => (
-  <Segment clearing size="large" key={props.product.productId}>
-    <Grid style={{ height: "40px" }}>
-      <Column verticalContentAlignment="center" width="50px">
-        <Segment style={{ height: "40px", padding: 5 }}>
-          <Grid
-            horizontalContentAlignment="center"
-            verticalContentAlignment="center"
-          >
-            <img
-              style={{
-                maxWidth: "100%",
-                maxHeight: "100%"
-              }}
-              src={props.product.image}
-            />
-          </Grid>
-        </Segment>
-      </Column>
-      <Column verticalContentAlignment="center">
-        <b style={{ paddingLeft: 10 }}>{props.product.name}</b>
-      </Column>
-      <Column verticalContentAlignment="center" width="120px">
-        <Button
-          floated="right"
-          onClick={() => props.onProductRemoved(props.product)}
-        >
-          Ta bort
-        </Button>
-      </Column>
-    </Grid>
-  </Segment>
-);
+@observer
+export class ShoppingCartItemDisplay extends React.Component<ShoppingCartItemProps> {
+  render() {
+    return (
+      <Segment clearing size="large" key={this.props.shoppingCartItem.shoppingCartItemId}>
+        <Grid style={{ height: "40px" }}>
+          <Column verticalContentAlignment="center" width="50px">
+            <Segment style={{ height: "40px", padding: 5 }}>
+              <Grid horizontalContentAlignment="center" verticalContentAlignment="center">
+                <img
+                  style={{
+                    maxWidth: "100%",
+                    maxHeight: "100%"
+                  }}
+                  src={this.props.shoppingCartItem.product.image}
+                />
+              </Grid>
+            </Segment>
+          </Column>
+          <Column verticalContentAlignment="center">
+            <b style={{ paddingLeft: 10 }}>{this.props.shoppingCartItem.product.name}</b>
+          </Column>
+          <Column verticalContentAlignment="center" width="120px">
+            <Button floated="right" onClick={() => this.props.onProductRemoved(this.props.shoppingCartItem)}>
+              Ta bort
+            </Button>
+          </Column>
+        </Grid>
+      </Segment>
+    );
+  }
+}
 
 export default ShoppingCart;

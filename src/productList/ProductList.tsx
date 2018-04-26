@@ -1,13 +1,13 @@
 import * as React from "react";
-import { ProductModel } from "../product/productModel";
-import { Product } from "../product/Product";
 //import { Grid } from "semantic-ui-react";
 import { observer } from "mobx-react";
 import Grid, { Column, Row } from "react-awesome-grid";
+import { ProductDisplay } from "../product/ProductDisplay";
+import { Product } from "../product/Product";
 
 interface ProductListProps {
-  products: ProductModel[];
-  onProductClick: (product: ProductModel) => void;
+  products: Product[];
+  onProductClick: (product: Product) => void;
 }
 
 // @observer
@@ -15,7 +15,7 @@ export class ProductList extends React.PureComponent<ProductListProps> {
   render() {
     console.log("Rendering ProductList");
 
-    let productGroups: ((ProductModel | null)[])[] = [];
+    let productGroups: ((Product | null)[])[] = [];
     let size = 3;
 
     let productsCopy = this.props.products.slice();
@@ -35,7 +35,7 @@ export class ProductList extends React.PureComponent<ProductListProps> {
       return (
         <Row key={groupIndex} height="200px">
           {group.map((p, i) => {
-            return <Column key={i}>{p && <Product key={p.productId} onClick={p => this.props.onProductClick(p)} product={p} />}</Column>;
+            return <Column key={i}>{p && <ProductDisplay key={p.productId} onClick={p => this.props.onProductClick(p)} product={p} />}</Column>;
           })}
         </Row>
       );

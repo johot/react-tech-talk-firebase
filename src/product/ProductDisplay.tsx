@@ -1,17 +1,17 @@
 import * as React from "react";
 import { Card } from "semantic-ui-react";
 import { Grid } from "react-awesome-grid";
-import { ProductModel } from "./productModel";
 import { css } from "glamor";
 import MediaQuery from "react-responsive";
 import { Responsive } from "../common/Responsive";
+import { Product } from "./Product";
 
 interface ProductProps {
-  product: ProductModel;
-  onClick: (produt: ProductModel) => void;
+  product: Product;
+  onClick: (produt: Product) => void;
 }
 
-export const Product = (props: ProductProps) => (
+export const ProductDisplay = (props: ProductProps) => (
   <div
     style={{
       padding: 10,
