@@ -80,8 +80,9 @@ class Home extends React.Component<AppProps> {
   };
 
   render() {
-    const store = this.props.store!;
+    alert("URL" + process.env.PUBLIC_URL);
 
+    const store = this.props.store!;
     if (store.customerId === "")
       return (
         <Container>
