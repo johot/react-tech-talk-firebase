@@ -50,6 +50,8 @@ class App extends React.Component<AppProps> {
   };
 
   render() {
+    alert("URL" + process.env.PUBLIC_URL);
+
     return (
       <Router>
         <div>
@@ -80,8 +82,6 @@ class Home extends React.Component<AppProps> {
   };
 
   render() {
-    alert("URL" + process.env.PUBLIC_URL);
-
     const store = this.props.store!;
     if (store.customerId === "")
       return (
