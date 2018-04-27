@@ -40,7 +40,7 @@ export class Orders extends React.Component<OrdersProps> {
           );
         })}
         <div style={{ marginTop: 10 }}>
-          <Link to="/">Hem</Link>
+          <Link to={process.env.PUBLIC_URL + "/"}>Hem</Link>
         </div>
       </Container>
     );

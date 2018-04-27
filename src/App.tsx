@@ -135,7 +135,7 @@ class Home extends React.Component<AppProps> {
           products={this.props.store!.products}
           onProductClick={this._addProduct}
         />
-        <Link to="/orders">Beställningar</Link>
+        <Link to={process.env.PUBLIC_URL + "/orders"}>Beställningar</Link>
       </Container>
     );
   }
