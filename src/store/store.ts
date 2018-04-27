@@ -3,6 +3,7 @@ import * as firebase from "firebase";
 import * as delay from "delay";
 import { ShoppingCartItem } from "../shoppingCart/shoppingCartItemModel";
 import { Product } from "../product/Product";
+import { Order } from "../orders/order";
 
 var config = {
   apiKey: "AIzaSyCqsiAe1YxxbUkUg9kytIq_b8zjP4vhbKE",
@@ -19,8 +20,13 @@ export class Store {
   @observable loadingProducts: boolean = false;
   @observable loadingShoppingCart: boolean = false;
   @observable customerId: string = "";
+  @observable orders: Order[] = [];
+
+  private _initialized: boolean = false;
 
   init = async () => {
+    if (this._initialized) return;
+
     this.loadingProducts = true;
     this.loadingShoppingCart = true;
 
@@ -28,8 +34,8 @@ export class Store {
 
     // Get db references
     var productsRef = this._getProductsRef();
-
     var shoppingCartRef = this._getShoppingCartRef(this.customerId);
+    var ordersRef = this._getOrdersRef();
 
     productsRef.on("value", (data: firebase.database.DataSnapshot) => {
       runInAction(() => {
@@ -48,10 +54,15 @@ export class Store {
 
         data.forEach(x => {
           const productId = x.val().productId;
-          const existingProduct = this.products.find(p => p.productId === productId);
+          const existingProduct = this.products.find(
+            p => p.productId === productId
+          );
 
           if (existingProduct) {
-            shoppingCartProducts.push({ shoppingCartItemId: x.key!, product: existingProduct! });
+            shoppingCartProducts.push({
+              shoppingCartItemId: x.key!,
+              product: existingProduct!
+            });
           }
 
           // Keep iterating
@@ -63,6 +74,40 @@ export class Store {
         this.loadingShoppingCart = false;
       });
     });
+
+    ordersRef.on("value", (data: firebase.database.DataSnapshot) => {
+      const orders: Order[] = [];
+
+      data.forEach(x => {
+        const orderId = x.key;
+        const order = x.val();
+        const productIds: string[] = order.products;
+
+        // Create product list
+        const productList: Product[] = [];
+
+        productIds.forEach(x => {
+          const matchingProduct = this.products.find(p => p.productId === x);
+
+          if (matchingProduct) productList.push(matchingProduct);
+        });
+
+        orders.push({
+          orderTime: order.orderTime,
+          orderId: orderId!,
+          customerId: order.customerId,
+          products: productList
+        });
+
+        return false;
+      });
+
+      runInAction(() => {
+        this.orders = orders;
+      });
+    });
+
+    this._initialized = true;
   };
 
   private _convertProductData = (productData: any) => {
@@ -71,7 +116,9 @@ export class Store {
     return Object.keys(productData).map<Product>(pid => {
       return {
         productId: pid,
-        image: productData[pid].image ? productData[pid].image : "img/unknown.jpg",
+        image: productData[pid].image
+          ? productData[pid].image
+          : "img/unknown.jpg",
         name: productData[pid].name
       };
     });
@@ -79,7 +126,9 @@ export class Store {
 
   private _remapShoppingCartItemProducts = () => {
     this.shoppingCartProducts.forEach(s => {
-      const matchingProduct = this.products.find(p => p.productId === s.product.productId);
+      const matchingProduct = this.products.find(
+        p => p.productId === s.product.productId
+      );
       if (matchingProduct) {
         s.product = matchingProduct;
       }
@@ -97,7 +146,10 @@ export class Store {
   addShoppingCartItem = (product: Product) => {
     var ref = this._getShoppingCartRef(this.customerId);
 
-    const shoppingCartDbItem: ShoppingCartDbItem = { productId: product.productId, timeAdded: new Date().toLocaleString() };
+    const shoppingCartDbItem: ShoppingCartDbItem = {
+      productId: product.productId,
+      timeAdded: new Date().toLocaleString()
+    };
 
     var newPostKey = ref.push(shoppingCartDbItem);
   };
@@ -108,7 +160,11 @@ export class Store {
       return s.product.productId;
     });
 
-    const order: OrderDbModel = { customerId: this.customerId, orderTime: new Date().toLocaleString(), products: productKeys };
+    const order: OrderDbModel = {
+      customerId: this.customerId,
+      orderTime: new Date().toLocaleString(),
+      products: productKeys
+    };
 
     var newOrderPost = this._getOrdersRef().push(order);
 
@@ -130,7 +186,9 @@ export class Store {
     return firebase.database().ref("orders");
   };
 
-  private _getShoppingCartRef = (customerId: string): firebase.database.Reference => {
+  private _getShoppingCartRef = (
+    customerId: string
+  ): firebase.database.Reference => {
     return firebase.database().ref("shoppingCarts/" + customerId);
   };
 
