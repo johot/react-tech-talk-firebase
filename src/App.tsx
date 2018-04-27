@@ -50,13 +50,11 @@ class App extends React.Component<AppProps> {
   };
 
   render() {
-    alert("URL" + process.env.PUBLIC_URL);
-
     return (
       <Router>
         <div>
-          <Route exact path="/" component={Home} />
-          <Route path="/orders" component={Orders} />
+          <Route exact path={process.env.PUBLIC_URL + "/"} component={Home} />
+          <Route path={process.env.PUBLIC_URL + "/orders"} component={Orders} />
         </div>
       </Router>
     );
